@@ -87,6 +87,16 @@
 			$msg = "<p class=\" alert alert-danger \"> Mobile number is not correct ! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
 		} else if ($age < 18 && $age < 40) {
 			$msg = "<p class=\" alert alert-danger \"> Age should be between 19 to 39! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
+		}
+		/**
+		 * file validation
+		 */
+		else if (empty($file_name)) {
+			$err['photo'] = "<p class=\" alert alert-danger \"> Please select a file ! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
+		} else if (in_array($extention, ['jpg', 'png', 'gif', 'jpeg', 'webp']) == false) {
+			$err['photo'] = "<p class=\" alert alert-warning \"> Invalid file format ! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
+		} else if ($size_in_kb > 500) {
+			$err['photo'] = "<p class=\" alert alert-info \"> Image size is too large, Max photo size 500KB ! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
 		} else {
 
 			move_uploaded_file($file_tmpname, 'photos/' . $unique_name);
@@ -252,6 +262,7 @@
 	<script src="assets/js/popper.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/custom.js"></script>
+
 	<script>
 		$('#insert_photo').change(function(e) {
 			let file_url = URL.createObjectURL(e.target.files[0]);
