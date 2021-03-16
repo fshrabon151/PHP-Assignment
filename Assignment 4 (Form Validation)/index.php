@@ -110,8 +110,14 @@
 			$err['photo'] = "<p class=\" alert alert-info \"> Image size is too large, Max photo size 500KB ! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
 		} else {
 
-			move_uploaded_file($file_tmpname, 'photos/' . $unique_name);
+			if(empty($msg)||$err['name']||$err['email']||empty($err['cell'])||empty($err['age'])||empty($err['photo'])||empty($err['captcha'])){
+				move_uploaded_file($file_tmpname, 'photos/' . $unique_name);
 			$msg = "<p class=\" alert alert-success \">Data stable <button class=\"close\" data-dismiss=\"alert\">&times;</button></p>";
+			}else{
+				$msg = "<p class=\" alert alert-danger \"> All fields are required ! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
+
+
+			}
 			
 		}
 	}
