@@ -93,11 +93,11 @@
 		} else if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
 			$msg = "<p class=\" alert alert-warning \"> Invalid email address ! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
 		} else if ($specific_mail != 'codertrust.com') {
-			$msg = "<p class=\" alert alert-info \"> Email should be belongs to codertrust.com domain ! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
+			$err['email'] = "<p class=\" alert alert-info \"> Email should be belongs to codertrust.com domain ! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
 		} else if (in_array($cell_start, ['017', '018', '019', '015', '013', '016', '014']) == false) {
-			$msg = "<p class=\" alert alert-danger \"> Mobile number is not correct ! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
+			$err['cell'] = "<p class=\" alert alert-danger \"> Mobile number is not correct ! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
 		} else if ($age < 18 && $age < 40) {
-			$msg = "<p class=\" alert alert-danger \"> Age should be between 19 to 39! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
+			$err['age'] = "<p class=\" alert alert-danger \"> Age should be between 19 to 39! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
 		}
 		/**
 		 * file validation
@@ -112,28 +112,27 @@
 
 			move_uploaded_file($file_tmpname, 'photos/' . $unique_name);
 			$msg = "<p class=\" alert alert-success \">Data stable <button class=\"close\" data-dismiss=\"alert\">&times;</button></p>";
+			
 		}
 	}
 
 	?>
 
-	<div class="container">
+	<div class="container mb-5">
 
-		<h3 class="text-center text-uppercase m-5">PHP Form validatoin</h3>
+		<h3 class="text-center text-uppercase mb-4 mt-4">PHP Form Validation</h3>
 		<?php
 		if (isset($msg)) {
 			echo $msg;
 		}
 		?>
 
-		<div class="row">
-			<div class="col-md-6">
-				<h3 class="mb-4">Insert Data</h3>
 
-				<form action="" method="post" enctype="multipart/form-data">
+
+				<form style="border:1px solid #fff; padding:25px;width:450px;margin:0 auto;box-shadow: 0px 0px 27px #ffffff;" action="" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="" class="form-label">Name: </label>
-						<input type="text" name="name" class="form-control">
+						<input type="text" name="name" value="<?php if(isset($name)) echo $name;?>" class="form-control">
 						<?php
 
 						if (isset($err['name'])) {
@@ -145,7 +144,7 @@
 
 					<div class="form-group">
 						<label for="" class="form-label">Email: </label>
-						<input type="email" name="email" class="form-control">
+						<input type="email" name="email" value="<?php if(isset($email)) echo $email;?>" class="form-control">
 						<?php
 
 						if (isset($err['email'])) {
@@ -157,7 +156,7 @@
 
 					<div class="form-group">
 						<label for="" class="form-label">Cell: </label>
-						<input type="text" name="cell" class="form-control">
+						<input type="text" name="cell" value="<?php if(isset($cell)) echo $cell;?>" class="form-control">
 						<?php
 
 						if (isset($err['cell'])) {
@@ -168,7 +167,7 @@
 					</div>
 					<div class="form-group">
 						<label for="" class="form-label">Age: </label>
-						<input type="text" name="age" class="form-control">
+						<input type="text" name="age" value="<?php if(isset($age)) echo $age;?>" class="form-control">
 						<?php
 
 						if (isset($err['age'])) {
@@ -179,7 +178,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="insert_photo" class="form-label">Upload Photo <img width="60" src="file.gif" alt=""></label> <br>
+						<label for="insert_photo" class="form-label">Upload Photo <img id="insert_photo_label" width="60" src="file.gif" alt=""></label> <br>
 						<img style="max-width: 100%;" src="" alt="" id="upload_photo">
 						<input id="insert_photo" style="display: none;" type="file" name="insert_photo" class="form-control">
 						<?php
@@ -200,7 +199,7 @@
 						<label for="" class="form-label">Solve the captcha</label>
 						<input type="hidden" name="firstNumber" value="<?php echo $ranNumb1?>">
 						<input type="hidden" name="lastNumber" value="<?php echo $ranNumb2?>"> <br>
-						<?php echo "<span class=\"unselectable\"> <b>$ranNumb1 + $ranNumb2</span> =</b> "?></label> <input name="captchaResult" type="text" size="2">
+						<?php echo "<span class=\"unselectable\"> <b>$ranNumb1 + $ranNumb2</span> =</b> "?></label> <input name="captchaResult" type="text" size="2"> <br>
 						<?php
 
 						if (isset($err['captcha'])) {
@@ -209,71 +208,10 @@
 
 						?>
 					</div>
-					<button type="submit" class="btn btn-primary mb-5" name="submit">Submit</button>
+					<button type="submit" class="btn btn-primary" name="submit">Submit</button>
 
 				</form>
 
-			</div>
-			<div class="col-md-6">
-				<h3 class="mb-4">View Data</h3>
-
-				<div class="view">
-					<div class="form-group">
-						<label for="" class="form-label">Name: </label>
-						<label for="" class="form-control">
-							<?php
-							if (isset($name)) {
-								echo $name;
-							}
-							?>
-						</label>
-					</div>
-
-					<div class="form-group">
-						<label for="" class="form-label">Email: </label>
-						<label for="" class="form-control">
-							<?php
-							if (isset($email)) {
-								echo $email;
-							}
-							?>
-
-						</label>
-					</div>
-
-					<div class="form-group">
-						<label for="" class="form-label">Cell: </label>
-						<label for="" class="form-control">
-							<?php
-							if (isset($cell)) {
-								echo $cell;
-							}
-							?>
-
-						</label>
-					</div>
-
-					<div class="form-group">
-						<label for="" class="form-label">Age: </label>
-						<label for="" class="form-control">
-
-							<?php
-							if (isset($age)) {
-								echo $age;
-							}
-							?>
-
-						</label>
-					</div>
-
-					<div class="form-group">
-						<label for="" class="form-label">Photo: </label> <br>
-						<img src="photos/<?php echo $unique_name ?>" style="max-width: 100%;" alt="">
-
-					</div>
-				</div>
-			</div>
-		</div>
 
 	</div>
 
@@ -297,6 +235,7 @@
 		$('#insert_photo').change(function(e) {
 			let file_url = URL.createObjectURL(e.target.files[0]);
 			$('#upload_photo').attr('src', file_url);
+            $('#insert_photo_label').hide();
 		});
 	</script>
 
