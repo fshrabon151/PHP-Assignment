@@ -121,15 +121,16 @@
 	<div class="container mb-5">
 
 		<h3 class="text-center text-uppercase mb-4 mt-4">PHP Form Validation</h3>
-		<?php
-		if (isset($msg)) {
-			echo $msg;
-		}
-		?>
+		
 
 
 
 				<form style="border:1px solid #fff; padding:25px;width:450px;margin:0 auto;box-shadow: 0px 0px 27px #ffffff;" action="" method="post" enctype="multipart/form-data">
+				<?php
+				if (isset($msg)) {
+					echo $msg;
+				}
+				?>
 					<div class="form-group">
 						<label for="" class="form-label">Name: </label>
 						<input type="text" name="name" value="<?php if(isset($name)) echo $name;?>" class="form-control">
@@ -199,7 +200,7 @@
 						<label for="" class="form-label">Solve the captcha</label>
 						<input type="hidden" name="firstNumber" value="<?php echo $ranNumb1?>">
 						<input type="hidden" name="lastNumber" value="<?php echo $ranNumb2?>"> <br>
-						<?php echo "<span class=\"unselectable\"> <b>$ranNumb1 + $ranNumb2</span> =</b> "?></label> <input name="captchaResult" type="text" size="2"> <br>
+						<?php echo "<span class=\"unselectable\"> <b>$ranNumb1 + $ranNumb2</span> =</b> "?></label> <input name="captchaResult" type="text" size="2"> 
 						<?php
 
 						if (isset($err['captcha'])) {
@@ -238,6 +239,7 @@
             $('#insert_photo_label').hide();
 		});
 	</script>
+
 
 
 
