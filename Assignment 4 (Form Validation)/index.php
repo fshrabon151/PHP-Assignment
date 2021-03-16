@@ -20,6 +20,17 @@
 		$cell = $_POST['cell'];
 		$age = $_POST['age'];
 
+		$firstNumber = $_POST['firstNumber'];
+		$lastNumber = $_POST['lastNumber'];
+		$captchaResult = $_POST['captchaResult'];
+
+		$checkTotal = $firstNumber + $lastNumber;
+		if(empty($captchaResult)){
+			$err['captcha'] = "<p style=\" color:red; \"> * Required </p>";
+		}else if($captchaResult!==$checkTotal){
+			$err['captcha'] = "<p class=\" alert alert-info \"> * Wrong captcha! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
+		}
+
 		//check mail
 		if (isset($email)) {
 			$email_arr = explode('@', $email);
@@ -175,6 +186,25 @@
 
 						if (isset($err['photo'])) {
 							echo $err['photo'];
+						}
+
+						?>
+					</div>
+
+					<?php
+						$ranNumb1 = mt_rand(1,9);
+						$ranNumb2 = mt_rand(1,9);
+					?>
+
+					<div class="form-group">
+						<label for="" class="form-label">Solve the captcha</label>
+						<input type="hidden" name="firstNumber" value="<?php echo $ranNumb1?>">
+						<input type="hidden" name="lastNumber" value="<?php echo $ranNumb2?>"> <br>
+						<?php echo "<span class=\"unselectable\"> <b>$ranNumb1 + $ranNumb2</span> =</b> "?></label> <input name="captchaResult" type="text" size="2">
+						<?php
+
+						if (isset($err['captcha'])) {
+							echo "<br>" .$err['captcha'];
 						}
 
 						?>
