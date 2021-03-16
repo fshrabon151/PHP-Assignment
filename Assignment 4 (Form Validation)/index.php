@@ -24,10 +24,10 @@
 		$lastNumber = $_POST['lastNumber'];
 		$captchaResult = $_POST['captchaResult'];
 
-		$checkTotal = $firstNumber + $lastNumber;
+		echo $checkTotal = $firstNumber + $lastNumber;
 		if(empty($captchaResult)){
 			$err['captcha'] = "<p style=\" color:red; \"> * Required </p>";
-		}else if($captchaResult!==$checkTotal){
+		}else if($captchaResult!=$checkTotal){
 			$err['captcha'] = "<p class=\" alert alert-info \"> * Wrong captcha! <button class=\"close\" data-dismiss=\"alert\">&times;</button> </p>";
 		}
 
