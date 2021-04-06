@@ -37,9 +37,9 @@
           <div class="wrapper row">
                <div class="card shadow mx-auto col-md-5 p-5">
                     <div class="card-body text-center card-custom">
-                         <a href="student/index.php" class="btn btn-info">Student</a> <br>
-                         <a href="teacher/index.php" class="btn btn-info">Teacher</a> <br>
-                         <a href="staff/index.php" class="btn btn-info">Staff</a>
+                         <a href="student_view.php" class="btn btn-info">Student</a> <br>
+                         <a href="teacher_view.php" class="btn btn-info">Teacher</a> <br>
+                         <a href="staff_view.php" class="btn btn-info">Staff</a>
                     </div>
                </div>
           </div>

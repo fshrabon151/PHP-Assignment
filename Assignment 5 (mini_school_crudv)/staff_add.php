@@ -1,5 +1,5 @@
 <?php
-include_once "../autoload.php";
+include_once "autoload.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,28 +11,28 @@ include_once "../autoload.php";
     <title>Document</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="../assets/img/favicon-16x16.png">
+    <link rel="icon" href="assets/img/favicon-16x16.png">
 
     <!-- SlickNav CSS  -->
-    <link rel="stylesheet" href="../assets/css/slicknav.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.min.css">
 
     <!-- Owl Carousel CSS  -->
-    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
 
     <!-- FontAwesome CSS  -->
-    <link rel="stylesheet" href="../assets/fonts/fontAwesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontAwesome/css/all.min.css">
 
 
 
     <!-- Bootstrap CSS  -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
 
     <!-- Main CSS   -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- Responsive CSS     -->
-    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
 
 </head>
 
@@ -63,20 +63,20 @@ include_once "../autoload.php";
             $msg =  validate('Invalid Email address');
         }
         // email check for duplicate data 
-        else if (dataCheck('teachers', 'email', $email)) {
+        else if (dataCheck('staffs', 'email', $email)) {
             $msg = validate('Email already exists', 'warning');
         } // cell check for duplicate data 
-        else if (dataCheck('teachers', 'email', $email)) {
+        else if (dataCheck('staffs', 'email', $email)) {
             $msg = validate('Email already exists', 'warning');
         }
         // username check for duplicate data 
-        else if (dataCheck('teachers', 'cell', $cell)) {
+        else if (dataCheck('staffs', 'cell', $cell)) {
             $msg = validate('Cell  already exists', 'warning');
         } else {
 
 
             // Upload ptofile photo			
-            $data = move($_FILES['photo'], '../photos/');
+            $data = move($_FILES['photo'], 'photos/');
 
             // get function 
             $unique_name = $data['unique_name'];
@@ -84,7 +84,7 @@ include_once "../autoload.php";
 
             if (empty($err_msg)) {
                 // Data insert 
-                create("INSERT INTO teachers (name, email, cell, username, location, age, gender, course, photo) VALUES ('$name','$email','$cell','$username', '$location', '$age', '$gender', '$course', '$unique_name')");
+                create("INSERT INTO staffs (name, email, cell, username, location, age, gender, course, photo) VALUES ('$name','$email','$cell','$username', '$location', '$age', '$gender', '$course', '$unique_name')");
                 $msg =  validate('Data stable', 'success');
             } else {
                 $msg = $err_msg;
@@ -104,9 +104,9 @@ include_once "../autoload.php";
                 <span>Students CRUDV Application</span>
             </div>
             <ul class="sidebar-nav">
-                <li><a href="../student/index.php"><i class="fas fa-user-graduate"></i> All Student</a></li>
-                <li><a href="../student/add.php"><i class="fas fa-user-plus"></i> Add Student</a></li>
-                <li><a href="../student/trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
+                <li><a href="student_view.php"><i class="fas fa-user-graduate"></i> All Student</a></li>
+                <li><a href="student_add.php"><i class="fas fa-user-plus"></i> Add Student</a></li>
+                <li><a href="student_trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
             </ul>
 
             <div class="logo">
@@ -114,9 +114,9 @@ include_once "../autoload.php";
                 <span>Teachers CRUDV Application</span>
             </div>
             <ul class="sidebar-nav">
-                <li><a href="index.php"><i class="fas fa-user-graduate"></i> All Teachers</a></li>
-                <li><a href="add.php"><i class="fas fa-user-plus"></i> Add Teachers</a></li>
-                <li><a href="trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
+                <li><a href="teacher_view.php"><i class="fas fa-user-graduate"></i> All Teachers</a></li>
+                <li><a href="teacher_add.php"><i class="fas fa-user-plus"></i> Add Teachers</a></li>
+                <li><a href="teacher_trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
             </ul>
 
             <div class="logo">
@@ -124,10 +124,10 @@ include_once "../autoload.php";
                 <span>Staffs CRUDV Application</span>
             </div>
             <ul class="sidebar-nav">
-                <li><a href="../staff/index.php"><i class="fas fa-user-graduate"></i> All Staffs</a></li>
-                <li><a href="../staff/add.php"><i class="fas fa-user-plus"></i> Add Staff</a></li>
-                <li><a href="../staff/trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
-                <li><a href="../index.php">Logout</a></li>
+                <li><a href="staff_view.php"><i class="fas fa-user-graduate"></i> All Staffs</a></li>
+                <li><a href="staff_add.php"><i class="fas fa-user-plus"></i> Add Staff</a></li>
+                <li><a href="staff_trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
+                <li><a href="index.php">Logout</a></li>
 
             </ul>
         </div>
@@ -136,18 +136,18 @@ include_once "../autoload.php";
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <p class="page-title bg-info"><a href="#" class="btn btn-success" id="menu-toggle"><i class="fas fa-bars"></i> Menu </a> <span class="span-title"> <i class="fas fa-user-plus"></i></i> Add New Teacher</span></p>
+                        <p class="page-title bg-info"><a href="#" class="btn btn-success" id="menu-toggle"><i class="fas fa-bars"></i> Menu </a> <span class="span-title"> <i class="fas fa-user-plus"></i></i> Add New Staff</span></p>
 
                         <?php
                         if (isset($msg)) {
                             echo $msg;
                         }
                         ?>
-                        <div class="card shadow mx-auto col-lg-4">
+                        <div class="card shadow mx-auto col-md-6">
                             <div class="card-body p-4">
                                 <form action="" method="POST" enctype="multipart/form-data">
                                     <div class="form-group">
-                                        <label class="form-label" for="name">Teacher Name</label>
+                                        <label class="form-label" for="name">Staff Name</label>
                                         <input type="text" class="form-control" id="name" name="name" value="<?php old('name') ?>">
                                     </div><br>
                                     <div class="form-group">
@@ -210,14 +210,14 @@ include_once "../autoload.php";
                                         <label for="">Profile Photo</label> <br>
                                         <img id="load_student_photo" style="max-width:100% ;" src="" alt="">
                                         <br>
-                                        <label for="student_photo" id="student_up"> <img width="100" src="../assets/img/uloadphoto.png" alt=""></label>
+                                        <label for="student_photo" id="student_up"> <img width="100" src="assets/img/uloadphoto.png" alt=""></label>
                                         <input id="student_photo" name="photo" value="<?php old('photo') ?>" style="display:none;" class="form-control" type="file">
                                     </div>
                                     <br>
 
                                     <div class="form-group">
                                         <label for=""></label>
-                                        <input name="stc" class="btn btn-primary" type="submit" value="Add student">
+                                        <input name="stc" class="btn btn-primary" type="submit" value="Add Staff">
 
 
                                     </div>
@@ -238,10 +238,10 @@ include_once "../autoload.php";
 
 
     <!-- JS FILES  -->
-    <script src="../assets/js/jquery-3.4.1.min.js"></script>
-    <script src="../assets/js/popper.min.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../assets/js/custom.js"></script>
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/custom.js"></script>
 
     <script>
         $("#menu-toggle").click(function(e) {

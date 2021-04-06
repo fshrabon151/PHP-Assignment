@@ -1,5 +1,5 @@
 <?php
-include_once "../autoload.php";
+include_once "autoload.php";
 /**
  * Show single student
  */
@@ -21,28 +21,28 @@ if (isset($_GET['show_id'])) {
     <title><?php echo $teacher->name; ?></title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="../assets/img/favicon-16x16.png">
+    <link rel="icon" href="assets/img/favicon-16x16.png">
 
     <!-- SlickNav CSS  -->
-    <link rel="stylesheet" href="../assets/css/slicknav.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.min.css">
 
     <!-- Owl Carousel CSS  -->
-    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
 
     <!-- FontAwesome CSS  -->
-    <link rel="stylesheet" href="../assets/fonts/fontAwesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontAwesome/css/all.min.css">
 
 
 
     <!-- Bootstrap CSS  -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
 
     <!-- Main CSS   -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- Responsive CSS     -->
-    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
 
 </head>
 
@@ -51,40 +51,41 @@ if (isset($_GET['show_id'])) {
     <div id="wrapper" class="menuDisplayed">
 
         <!-- sidebar  -->
+        <!-- sidebar  -->
         <div id="sidebar-wrapper">
 
-            <div class="logo">
-                <i class="fas fa-user-graduate"></i>
-                <span>Students CRUDV Application</span>
-            </div>
-            <ul class="sidebar-nav">
-                <li><a href="../student/index.php"><i class="fas fa-user-graduate"></i> All Student</a></li>
-                <li><a href="../student/add.php"><i class="fas fa-user-plus"></i> Add Student</a></li>
-                <li><a href="../student/trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
-            </ul>
+          <div class="logo">
+          <i class="fas fa-user-graduate"></i>
+          <span>Students CRUDV Application</span>
+          </div>
+          <ul class="sidebar-nav">
+          <li><a href="student_view.php"><i class="fas fa-user-graduate"></i> All Student</a></li>
+          <li><a href="student_add.php"><i class="fas fa-user-plus"></i> Add Student</a></li>
+          <li><a href="student_trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
+          </ul>
 
-            <div class="logo">
-                <i class="fas fa-user-graduate"></i>
-                <span>Teachers CRUDV Application</span>
-            </div>
-            <ul class="sidebar-nav">
-                <li><a href="index.php"><i class="fas fa-user-graduate"></i> All Teachers</a></li>
-                <li><a href="add.php"><i class="fas fa-user-plus"></i> Add Teachers</a></li>
-                <li><a href="trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
-            </ul>
+          <div class="logo">
+          <i class="fas fa-user-graduate"></i>
+          <span>Teachers CRUDV Application</span>
+          </div>
+          <ul class="sidebar-nav">
+          <li><a href="teacher_view.php"><i class="fas fa-user-graduate"></i> All Teachers</a></li>
+          <li><a href="teacher_add.php"><i class="fas fa-user-plus"></i> Add Teachers</a></li>
+          <li><a href="teacher_trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
+          </ul>
 
-            <div class="logo">
-                <i class="fas fa-user-graduate"></i>
-                <span>Staffs CRUDV Application</span>
-            </div>
-            <ul class="sidebar-nav">
-                <li><a href="../staff/index.php"><i class="fas fa-user-graduate"></i> All Staffs</a></li>
-                <li><a href="../staff/add.php"><i class="fas fa-user-plus"></i> Add Staff</a></li>
-                <li><a href="../staff/trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
-                <li><a href="../index.php">Logout</a></li>
+          <div class="logo">
+          <i class="fas fa-user-graduate"></i>
+          <span>Staffs CRUDV Application</span>
+          </div>
+          <ul class="sidebar-nav">
+          <li><a href="staff_view.php"><i class="fas fa-user-graduate"></i> All Staffs</a></li>
+          <li><a href="staff_add.php"><i class="fas fa-user-plus"></i> Add Staff</a></li>
+          <li><a href="staff_trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
+          <li><a href="index.php">Logout</a></li>
 
-            </ul>
-        </div>
+          </ul>
+          </div>
         <!-- Page content  -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
@@ -96,7 +97,7 @@ if (isset($_GET['show_id'])) {
                             <div class="row">
                                 <div class="col-lg-7 mx-auto mt-5">
                                     <div class="card p-5">
-                                        <img src="../photos/<?php echo $teacher->photo ?>" class="simg shadow mb-4" alt="">
+                                        <img src="photos/<?php echo $teacher->photo ?>" class="simg shadow mb-4" alt="">
                                         <h2 class="text-center"><?php echo $teacher->name ?></h2>
                                         <p class="text-center"><?php echo $teacher->username ?></p>
 
@@ -129,7 +130,7 @@ if (isset($_GET['show_id'])) {
                                                 </tr>
                                             </table>
 
-                                            <a href="index.php" class="btn btn-primary btn-sm">Back</a>
+                                            <a href="view.php" class="btn btn-primary btn-sm">Back</a>
                                         </div>
                                     </div>
 
@@ -150,10 +151,10 @@ if (isset($_GET['show_id'])) {
 
 
     <!-- JS FILES  -->
-    <script src="../assets/js/jquery-3.4.1.min.js"></script>
-    <script src="../assets/js/popper.min.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../assets/js/custom.js"></script>
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/custom.js"></script>
 
     <script>
         $("#menu-toggle").click(function(e) {

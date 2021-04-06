@@ -1,5 +1,5 @@
 <?php
-include_once "../autoload.php";
+include_once "autoload.php";
 
 /**
  * Student Data Delete
@@ -9,17 +9,17 @@ if (isset($_GET['delete_id'])) {
      $photo_name = $_GET['photo'];
 
 
-     unlink('../photos/' . $photo_name);
-     delete('staffs', $delete_id);
-     header("location:trash.php");
+     unlink('photos/' . $photo_name);
+     delete('teachers', $delete_id);
+     header("location:teacher_trash.php");
 }
 /**
  * Restore student data
  */
 if (isset($_GET['restore_id'])) {
      $restore_id = $_GET['restore_id'];
-     update("UPDATE staffs SET trash='false' WHERE id='$restore_id'");
-     header("location:trash.php");
+     update("UPDATE teachers SET trash='false' WHERE id='$restore_id'");
+     header("location:teacher_trash.php");
 }
 
 ?>
@@ -34,62 +34,63 @@ if (isset($_GET['restore_id'])) {
      <title>Student CRUDV</title>
 
      <!-- Favicon  -->
-     <link rel="icon" href="../assets/img/favicon-16x16.png">
+     <link rel="icon" href="assets/img/favicon-16x16.png">
 
 
      <!-- FontAwesome CSS  -->
-     <link rel="stylesheet" href="../assets/fonts/fontAwesome/css/all.min.css">
+     <link rel="stylesheet" href="assets/fonts/fontAwesome/css/all.min.css">
 
 
 
      <!-- Bootstrap CSS  -->
-     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
 
      <!-- Main CSS   -->
-     <link rel="stylesheet" href="../assets/css/style.css">
+     <link rel="stylesheet" href="assets/css/style.css">
 
      <!-- Responsive CSS     -->
-     <link rel="stylesheet" href="../assets/css/responsive.css">
+     <link rel="stylesheet" href="assets/css/responsive.css">
 
 </head>
 
 <body>
 
      <div id="wrapper" class="menuDisplayed">
-          <!-- sidebar  -->
-          <div id="sidebar-wrapper">
+           <!-- sidebar  -->
+        <div id="sidebar-wrapper">
 
-               <div class="logo">
-                    <i class="fas fa-user-graduate"></i>
-                    <span>Students CRUDV Application</span>
-               </div>
-               <ul class="sidebar-nav">
-                    <li><a href="../student/"><i class="fas fa-user-graduate"></i> All Student</a></li>
-                    <li><a href="../student/add.php"><i class="fas fa-user-plus"></i> Add Student</a></li>
-                    <li><a href="../student/trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
-               </ul>
+          <div class="logo">
+          <i class="fas fa-user-graduate"></i>
+          <span>Students CRUDV Application</span>
+          </div>
+          <ul class="sidebar-nav">
+          <li><a href="student_view.php"><i class="fas fa-user-graduate"></i> All Student</a></li>
+          <li><a href="student_add.php"><i class="fas fa-user-plus"></i> Add Student</a></li>
+          <li><a href="student_trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
+          </ul>
 
-               <div class="logo">
-                    <i class="fas fa-user-graduate"></i>
-                    <span>Teachers CRUDV Application</span>
-               </div>
-               <ul class="sidebar-nav">
-                    <li><a href="../teacher/"><i class="fas fa-user-graduate"></i> All Teachers</a></li>
-                    <li><a href="../teacher/add.php"><i class="fas fa-user-plus"></i> Add Teachers</a></li>
-                    <li><a href="../teacher/trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
-               </ul>
+          <div class="logo">
+          <i class="fas fa-user-graduate"></i>
+          <span>Teachers CRUDV Application</span>
+          </div>
+          <ul class="sidebar-nav">
+          <li><a href="teacher_view.php"><i class="fas fa-user-graduate"></i> All Teachers</a></li>
+          <li><a href="teacher_add.php"><i class="fas fa-user-plus"></i> Add Teachers</a></li>
+          <li><a href="teacher_trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
+          </ul>
 
-               <div class="logo">
-                    <i class="fas fa-user-graduate"></i>
-                    <span>Staffs CRUDV Application</span>
-               </div>
-               <ul class="sidebar-nav">
-                    <li><a href="index.php"><i class="fas fa-user-graduate"></i> All Staffs</a></li>
-                    <li><a href="add.php"><i class="fas fa-user-plus"></i> Add Staff</a></li>
-                    <li><a href="trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
-                    <li><a href="../index.php">Logout</a></li>
-               </ul>
+          <div class="logo">
+          <i class="fas fa-user-graduate"></i>
+          <span>Staffs CRUDV Application</span>
+          </div>
+          <ul class="sidebar-nav">
+          <li><a href="staff_view.php"><i class="fas fa-user-graduate"></i> All Staffs</a></li>
+          <li><a href="staff_add.php"><i class="fas fa-user-plus"></i> Add Staff</a></li>
+          <li><a href="staff_trash.php"><i class="far fa-trash-alt"></i> Trash</a></li>
+          <li><a href="index.php">Logout</a></li>
+
+          </ul>
           </div>
           <!-- Page content  -->
           <div id="page-content-wrapper">
@@ -97,7 +98,7 @@ if (isset($_GET['restore_id'])) {
 
                     <div class="row">
                          <div class="col-lg-12">
-                              <p class="page-title bg-info"><a href="#" class="btn btn-success" id="menu-toggle"><i class="fas fa-bars"></i></a> <span class="span-title"></i> <i class="far fa-trash-alt"></i> Staff Trash</span></p>
+                              <p class="page-title bg-info"><a href="#" class="btn btn-success" id="menu-toggle"><i class="fas fa-bars"></i></a> <span class="span-title"></i> <i class="far fa-trash-alt"></i> Teacher Trash</span></p>
 
                               <form class="form-inline float-right" action="" method="POST">
                                    <div class="form-group mx-sm-3 mb-2">
@@ -120,28 +121,28 @@ if (isset($_GET['restore_id'])) {
                                    <tbody>
                                         <?php
 
-                                        $data = allOutTrash('staffs', 'trash', 'true');
+                                        $data = allOutTrash('teachers', 'trash', 'true');
 
                                         //Search function start
                                         if (isset($_POST['search-btn'])) {
                                              $search = $_POST['search'];
-                                             $data = search('staffs', 'name', $search);
+                                             $data = search('teachers', 'name', $search);
                                         }
                                         //Search function end
 
                                         $i = 1;
-                                        while ($staff = $data->fetch_object()) :
+                                        while ($teacher = $data->fetch_object()) :
                                         ?>
                                              <tr class="pt-2">
                                                   <th scope="row"><?php echo $i;
                                                                       $i++; ?></th>
-                                                  <td><?php echo $staff->name ?></td>
-                                                  <td><?php echo $staff->email ?></td>
-                                                  <td><?php echo $staff->cell ?></td>
-                                                  <td><img src="../photos/<?php echo $staff->photo ?>" width="80" height="80" alt=""></td>
+                                                  <td><?php echo $teacher->name ?></td>
+                                                  <td><?php echo $teacher->email ?></td>
+                                                  <td><?php echo $teacher->cell ?></td>
+                                                  <td><img src="photos/<?php echo $teacher->photo ?>" width="80" height="80" alt=""></td>
                                                   <td>
-                                                       <a class="btn btn-sm btn-success restore_btn" href="?restore_id=<?php echo $staff->id ?>">Restore</a>
-                                                       <a class="btn btn-sm btn-danger delete_btn" href="?delete_id=<?php echo $staff->id ?>&photo=<?php echo $staff->photo ?>">Delete Parmanently</a>
+                                                       <a class="btn btn-sm btn-success restore_btn" href="?restore_id=<?php echo $teacher->id ?>">Restore</a>
+                                                       <a class="btn btn-sm btn-danger delete_btn" href="?delete_id=<?php echo $teacher->id ?>&photo=<?php echo $teacher->photo ?>">Delete Parmanently</a>
                                                   </td>
                                              </tr>
 
@@ -159,10 +160,10 @@ if (isset($_GET['restore_id'])) {
 
 
      <!-- JS FILES  -->
-     <script src="../assets/js/jquery-3.4.1.min.js"></script>
-     <script src="../assets/js/popper.min.js"></script>
-     <script src="../assets/js/bootstrap.min.js"></script>
-     <script src="../assets/js/custom.js"></script>
+     <script src="assets/js/jquery-3.4.1.min.js"></script>
+     <script src="assets/js/popper.min.js"></script>
+     <script src="assets/js/bootstrap.min.js"></script>
+     <script src="assets/js/custom.js"></script>
 
      <script>
           $("#menu-toggle").click(function(e) {
